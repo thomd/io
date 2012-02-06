@@ -50,88 +50,88 @@ Kudos to Daniel A. Koepke
 */
 
 
-#if defined(__APPLE__) 
+#if defined(__APPLE__)
 
-	#ifndef NS_INLINE
-		#define NS_INLINE static __inline__ __attribute__((always_inline))
+	#ifndef IO_NS_INLINE
+		#define IO_NS_INLINE static inline
 	#endif
 
 	#ifdef IO_IN_C_FILE
-		// in .c 
+		// in .c
 		#define IO_DECLARE_INLINES
-		#define IOINLINE NS_INLINE
+		#define IOINLINE IO_NS_INLINE
 	#else
-		// in .h 
+		// in .h
 		#define IO_DECLARE_INLINES
-		#define IOINLINE NS_INLINE
-	#endif 	
+		#define IOINLINE IO_NS_INLINE
+	#endif
 
-/*		
+/*
 	#include "TargetConditionals.h"
 
 
-	//#if defined(__llvm__)  && 
-	#if defined(__XCODE__) 
+	//#if defined(__llvm__)  &&
+	#if defined(__XCODE__)
 		//__GNUC__ && __GNUC__ >= 4
-		//#warning inline for xcode 
+		//#warning inline for xcode
 		#ifdef IO_IN_C_FILE
-			// in .c 
+			// in .c
 			#define IO_DECLARE_INLINES
-			#define IOINLINE 
+			#define IOINLINE
 		#else
-			// in .h 
+			// in .h
 			#define IO_DECLARE_INLINES
 			#define IOINLINE inline
 		#endif
 	#else
-		//#warning inline for NON-xcode 
+		//#warning inline for NON-xcode
 		#ifdef IO_IN_C_FILE
-			// in .c 
+			// in .c
 			#define IO_DECLARE_INLINES
 			#define IOINLINE inline
 		#else
-			// in .h 
+			// in .h
 			#define IO_DECLARE_INLINES
 			#define IOINLINE extern inline
-		#endif 
+		#endif
 
 	#endif
 	*/
-	
+
 #elif defined(__MINGW32__)
 
 	#ifdef IO_IN_C_FILE
-		// in .c 
+		// in .c
 		#define IO_DECLARE_INLINES
 		#define IOINLINE inline
 	#else
-		// in .h 
+		// in .h
 		#define IO_DECLARE_INLINES
 		#define IOINLINE static inline
-	#endif 
-	
+	#endif
+
 #elif defined(__linux__) || defined(__OpenBSD__) || defined(__NetBSD__) || defined(__FreeBSD__)
 
 	#ifdef IO_IN_C_FILE
-		// in .c 
+		// in .c
 		#define IO_DECLARE_INLINES
 		#define IOINLINE inline
 	#else
-		// in .h 
+		// in .h
 		#define IO_DECLARE_INLINES
 		#define IOINLINE extern inline
-	#endif 
-	
+	#endif
+
 #else
 
 	#ifdef IO_IN_C_FILE
-		// in .c 
+		// in .c
 		#define IO_DECLARE_INLINES
-		#define IOINLINE 
+		#define IOINLINE
 	#else
-		// in .h 
+		// in .h
 		#define IO_DECLARE_INLINES
 		#define IOINLINE inline
-	#endif 
-	
+	#endif
+
 #endif
